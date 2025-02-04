@@ -14,12 +14,12 @@ const mongoose = require("mongoose");
 		type: String,
 		required: true,
 	},
-	// course: {
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	required: true,
-	// 	ref: "Course",
-	// 	index: true,
-	// },
+	course: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "Course",
+		index: true,
+	},
 });
 
 // Export the RatingAndReview model

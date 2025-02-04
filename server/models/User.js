@@ -1,4 +1,5 @@
  const mongoose = require("mongoose");
+const validator=require('validator')
 
  const userSchema = new mongoose.Schema(
 	{
@@ -29,14 +30,14 @@
 			enum: ["Admin", "Student", "Instructor"],
 			required: true,
 		},
-		// active: {
-		// 	type: Boolean,
-		// 	default: true,
-		// },
-		// approved: {
-		// 	type: Boolean,
-		// 	default: true,
-		// },
+		active: {
+			type: Boolean,
+			default: true,
+		},
+		approved: {
+			type: Boolean,
+			default: true,
+		},
 		additionalDetails: {
 			type: mongoose.Schema.Types.ObjectId,
 			required: true,
