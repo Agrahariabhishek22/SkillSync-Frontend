@@ -6,10 +6,10 @@ export default function OpenRoute({children}) {
   
     const {token}=useSelector((state)=>state.auth);
 
-    // if(token!==null){
+    if(token===null){
         return children;  
-    // }
-    // else{ 
-        // <Navigate to={'/dashboard/my-profile'} />
-    // }
+    }
+    else{ 
+        return <Navigate to={'/dashboard/my-profile'} />
+    }
 }

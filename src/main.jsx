@@ -11,7 +11,7 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: rootReducer,
 });
- 
+
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <BrowserRouter>

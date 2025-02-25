@@ -53,7 +53,7 @@ exports.resetPasswordToken = async (req, res) => {
 exports.resetPassword = async (req, res) => {
   try {
     const { password, confirmPassword, token } = req.body;
-
+    // console.log("enter")
     if (confirmPassword !== password) {
       return res.json({
         success: false,
