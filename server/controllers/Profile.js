@@ -68,8 +68,6 @@ exports.deleteAccount = async (req, res) => {
     // delete user from the courses in which he is enrolled
     // delete user
 
-
-
     const id = req.user.id
     console.log(id)
     const user = await User.findById({ _id: id })
@@ -178,8 +176,7 @@ exports.getEnrolledCourses = async (req, res) => {
       SubsectionLength = 0
       for (var j = 0; j < userDetails.courses[i].courseContent.length; j++) {
         totalDurationInSeconds += userDetails.courses[i].courseContent[
-          j
-        ].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
+          j].subSection.reduce((acc, curr) => acc + parseInt(curr.timeDuration), 0)
         userDetails.courses[i].totalDuration = convertSecondsToDuration(
           totalDurationInSeconds
         )

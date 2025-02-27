@@ -1,27 +1,26 @@
-import { useEffect, useState } from "react"
-import ProgressBar from "@ramonak/react-progress-bar"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
+import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 
 export default function EnrolledCourses() {
-  const { token } = useSelector((state) => state.auth)
-  const navigate = useNavigate()
+  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
-  const [enrolledCourses, setEnrolledCourses] = useState(null)
+  const [enrolledCourses, setEnrolledCourses] = useState(null);
   const getEnrolledCourses = async () => {
     try {
       const res = await getUserEnrolledCourses(token);
-
       setEnrolledCourses(res);
     } catch (error) {
-      console.log("Could not fetch enrolled courses.")
+      console.log("Could not fetch enrolled courses.");
     }
   };
   useEffect(() => {
     getEnrolledCourses();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function EnrolledCourses() {
       {!enrolledCourses ? (
         <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
           <div className="spinner"></div>
-        </div> 
+        </div>
       ) : !enrolledCourses.length ? (
         <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
           You have not enrolled in any course yet.
@@ -46,9 +45,8 @@ export default function EnrolledCourses() {
           {/* Course Names */}
           {enrolledCourses.map((course, i, arr) => (
             <div
-              className={`flex items-center border border-richblack-700 ${
-                i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
-              }`}
+              className={`flex items-center border border-richblack-700 
+                ${i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"}`}
               key={i}
             >
               <div
@@ -56,7 +54,7 @@ export default function EnrolledCourses() {
                 onClick={() => {
                   navigate(
                     `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
-                  )
+                  );
                 }}
               >
                 <img
@@ -87,5 +85,5 @@ export default function EnrolledCourses() {
         </div>
       )}
     </>
-  )
+  );
 }
