@@ -4,7 +4,6 @@ import { toast } from "react-hot-toast";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
 import { MdNavigateNext } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   addCourseDetails,
   editCourseDetails,
@@ -13,9 +12,11 @@ import {
 import { setCourse, setStep } from "../../../../../slices/courseSlice";
 import { COURSE_STATUS } from "../../../../../utils/constants";
 import IconBtn from "../../../../common/IconBtn";
-// import Upload from "../Upload"
-// import ChipInput from "./ChipInput"
-// import RequirementsField from "./RequirementField"
+import Upload from "../Upload"
+import ChipInput from "./ChipInput"
+import RequirementsField from "./RequirementFields"
+
+
 
 export default function CourseInformationForm() {
   const {
@@ -36,8 +37,10 @@ export default function CourseInformationForm() {
     const getCategories = async () => {
       setLoading(true);
       const categories = await fetchCourseCategories();
+      // console.log(categories.data.allCategory)
       if (categories.length > 0) {
         // console.log("categories", categories)
+        console.log("hello")
         setCourseCategories(categories);
       }
       setLoading(false);
@@ -77,6 +80,8 @@ export default function CourseInformationForm() {
     }
     return false;
   };
+
+  
 
   //   handle next button click
   const onSubmit = async (data) => {
@@ -135,6 +140,8 @@ export default function CourseInformationForm() {
       }
       return;
     }
+
+    // create a new course
 
     const formData = new FormData();
     formData.append("courseName", data.courseTitle);
@@ -258,14 +265,14 @@ export default function CourseInformationForm() {
         getValues={getValues}
       />
       {/* Course Thumbnail Image */}
-      {/* <Upload
+      { <Upload
         name="courseImage"
         label="Course Thumbnail"
         register={register}
         setValue={setValue}
         errors={errors}
         editData={editCourse ? course?.thumbnail : null}
-      /> */}
+      /> }
       {/* Benefits of the course */}
       <div className="flex flex-col space-y-2">
         <label className="text-sm text-richblack-5" htmlFor="courseBenefits">

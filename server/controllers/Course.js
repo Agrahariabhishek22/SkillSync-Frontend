@@ -26,7 +26,7 @@ exports.createCourse = async (req, res) => {
     if (
       !courseName ||
       !courseDescription ||
-      !whatYouWillLearn ||
+      !whatYouWillLearn   ||
       !price ||
       !category ||
       !thumbnail ||

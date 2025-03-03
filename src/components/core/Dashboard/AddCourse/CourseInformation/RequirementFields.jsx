@@ -9,10 +9,13 @@ export default function RequirementsField({
   errors,
   getValues,
 }) {
+  
   const { editCourse, course } = useSelector((state) => state.course)
   const [requirement, setRequirement] = useState("")
+//   showing list of requirements after adding
   const [requirementsList, setRequirementsList] = useState([])
 
+  
   useEffect(() => {
     if (editCourse) {
       setRequirementsList(course?.instructions)
@@ -34,10 +37,16 @@ export default function RequirementsField({
   }
 
   const handleRemoveRequirement = (index) => {
-    const updatedRequirements = [...requirementsList]
-    updatedRequirements.splice(index, 1)
-    setRequirementsList(updatedRequirements)
-  }
+    // Step 1: Create a copy of the existing array to avoid mutating state directly
+    const updatedRequirements = [...requirementsList];
+  
+    // Step 2: Remove the element at the given index
+    // it will remove 1 element from index=index
+    updatedRequirements.splice(index, 1);
+  
+    // Step 3: Update state with the modified array
+    setRequirementsList(updatedRequirements);
+  };
 
   return (
     <div className="flex flex-col space-y-2">
