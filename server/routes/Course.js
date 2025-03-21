@@ -4,7 +4,7 @@ const router = express.Router()
 
 // import middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middlewares/auth")
-const { createCourse,deleteCourse,getInstructorCourses, editCourse, getAllCourses, getCourseDetails } = require("../controllers/Course");
+const { createCourse,deleteCourse,getInstructorCourses, editCourse, getAllCourses, getCourseDetails,getFullCourseDetails } = require("../controllers/Course");
 const { createCategory, showAllCategories, categoryPageDetails } = require("../controllers/Category");
 const { createSection, updateSection, deleteSection } = require("../controllers/Section");
 const { createSubSection, updateSubSection, deleteSubSection } = require("../controllers/SubSection");
@@ -20,6 +20,8 @@ router.post('/createCourse',auth,isInstructor,createCourse);
 router.get('/getAllCourses',getAllCourses);
 // get details of specific course
 router.post('/getCourseDetails',getCourseDetails)
+// Get Details for a Specific Courses
+router.post("/getFullCourseDetails", auth, getFullCourseDetails)
 // Edit Course routes
 router.post("/editCourse", auth, isInstructor, editCourse)
 // Get all Courses Under a Specific Instructor

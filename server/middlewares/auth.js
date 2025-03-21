@@ -58,6 +58,7 @@ exports.isStudent = async (req, res, next) => {
 	}
 };
 
+
 exports.isAdmin = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });

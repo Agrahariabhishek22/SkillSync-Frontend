@@ -16,7 +16,7 @@ export default function EnrolledCourses() {
       setEnrolledCourses(res);
     } catch (error) {
       console.log("Could not fetch enrolled courses.");
-    }
+    } 
   };
   useEffect(() => {
     getEnrolledCourses();

@@ -12,6 +12,7 @@ import { setCourse } from "../../../../../slices/courseSlice"
 import IconBtn from "../../../../common/IconBtn"
 import Upload from "../Upload"
 
+
 export default function SubSectionModal({
   modalData,
   setModalData,

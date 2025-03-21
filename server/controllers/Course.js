@@ -284,6 +284,7 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
+
 exports.getCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body
@@ -420,6 +421,8 @@ exports.getFullCourseDetails = async (req, res) => {
 // Get a list of Course for a given Instructor
 exports.getInstructorCourses = async (req, res) => {
   try {
+    // console.log("into get instr cour");
+    
     // Get the instructor ID from the authenticated user or request body
     const instructorId = req.user.id
 
@@ -445,6 +448,7 @@ exports.getInstructorCourses = async (req, res) => {
 // Delete the Course
 exports.deleteCourse = async (req, res) => {
   try {
+    console.log("in delete course controller")
     const { courseId } = req.body
 
     // Find the course
@@ -454,7 +458,7 @@ exports.deleteCourse = async (req, res) => {
     }
 
     // Unenroll students from the course
-    const studentsEnrolled = course.studentsEnroled
+    const studentsEnrolled = course.studentsEnrolled
     for (const studentId of studentsEnrolled) {
       await User.findByIdAndUpdate(studentId, {
         $pull: { courses: courseId },

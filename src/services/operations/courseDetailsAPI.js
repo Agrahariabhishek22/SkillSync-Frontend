@@ -74,7 +74,7 @@ export const fetchCourseCategories = async () => {
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Course Categories")
     }
-    result = response?.data?.allCategory
+    result = response?.data?.data
   } catch (error) {
     console.log("COURSE_CATEGORY_API API ERROR............", error)
     toast.error(error.message)
@@ -290,6 +290,7 @@ export const fetchInstructorCourses = async (token) => {
 export const deleteCourse = async (data, token) => {
   const toastId = toast.loading("Loading...")
   try {
+    console.log("delete course");
     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
       Authorization: `Bearer ${token}`,
     })

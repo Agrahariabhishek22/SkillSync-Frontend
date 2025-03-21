@@ -44,7 +44,6 @@ const validator=require('validator')
 			ref: "Profile",
 		},
 		courses: [
-			
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "Course",
