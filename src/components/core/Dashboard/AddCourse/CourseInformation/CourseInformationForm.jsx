@@ -37,6 +37,20 @@ export default function CourseInformationForm() {
       setLoading(true)
       try {
         const response = await fetchCourseCategories()
+        if (Array.isArray(response) && response.length > 0) {
+          response.forEach((item, index) => {
+            console.log(`Item ${index} Name:`, item.name); // Correctly accessing name for each object
+          });
+        } else {
+          console.log("Response is empty or not an array");
+        }
+        console.log(response[0].name);
+        if (response.length === 0) {
+          console.log("No data available");
+        }
+        console.log(response);
+        
+        
          if (response?.length > 0) {
           setCourseCategories(response)
         }
