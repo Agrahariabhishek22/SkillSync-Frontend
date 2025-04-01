@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-
 import "video-react/dist/video-react.css";
 import { useLocation } from "react-router-dom";
 import { BigPlayButton, Player } from "video-react";
-
 import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI";
 import { updateCompletedLectures } from "../../../slices/viewCourseSlice";
 import IconBtn from "../../common/IconBtn";
@@ -21,6 +19,7 @@ const VideoDetails = () => {
     useSelector((state) => state.viewCourse);
 
   const [videoData, setVideoData] = useState([]);
+  // will show show thumbnail of course when videodata is not available
   const [previewSource, setPreviewSource] = useState("");
   const [videoEnded, setVideoEnded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,15 +30,18 @@ const VideoDetails = () => {
       if (!courseId && !sectionId && !subSectionId) {
         navigate(`/dashboard/enrolled-courses`);
       } else {
-        // console.log("courseSectionData", courseSectionData)
+        console.log("courseSectionData", courseSectionData);
+
         const filteredData = courseSectionData.filter(
-          (course) => course._id === sectionId
+          (sec) => sec._id === sectionId
         );
-        // console.log("filteredData", filteredData)
+        console.log("filteredData", filteredData);
+
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         );
-        // console.log("filteredVideoData", filteredVideoData)
+
+        console.log("filteredVideoData", filteredVideoData[0]);
         setVideoData(filteredVideoData[0]);
         setPreviewSource(courseEntireData.thumbnail);
         setVideoEnded(false);
@@ -181,6 +183,7 @@ const VideoDetails = () => {
           ref={playerRef}
           aspectRatio="16:9"
           playsInline
+          // playInLIne:This attribute ensures that the video plays inline on mobile devices instead of entering fullscreen mode automatically.
           onEnded={() => setVideoEnded(true)}
           src={videoData?.videoUrl}
         >
@@ -206,7 +209,7 @@ const VideoDetails = () => {
                 disabled={loading}
                 onclick={() => {
                   if (playerRef?.current) {
-                    // set the current time of the video to 0
+                    //seek(0) means set the current time of the video to 0
                     playerRef?.current?.seek(0);
                     setVideoEnded(false);
                   }

@@ -1,42 +1,48 @@
-import { useEffect, useState } from "react"
-import { BsChevronDown } from "react-icons/bs"
-import { IoIosArrowBack } from "react-icons/io"
-import { useSelector } from "react-redux"
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { BsChevronDown } from "react-icons/bs";
+import { IoIosArrowBack } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import IconBtn from "../../common/IconBtn"
+import IconBtn from "../../common/IconBtn";
 
 export default function VideoDetailsSidebar({ setReviewModal }) {
-  const [activeStatus, setActiveStatus] = useState("")
-  const [videoBarActive, setVideoBarActive] = useState("")
-  const navigate = useNavigate()
-  const location = useLocation()
-  const { sectionId, subSectionId } = useParams()
+  // to show which lecture(section) is showing , only that will get expand rest all lecture will collapse
+  // contain ids of section
+  const [activeStatus, setActiveStatus] = useState("");
+  // subsection  which is rendering get active class to mark it as yellow
+  // contain ids of subsection
+  const [videoBarActive, setVideoBarActive] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { sectionId, subSectionId } = useParams();
   const {
     courseSectionData,
     courseEntireData,
     totalNoOfLectures,
     completedLectures,
-  } = useSelector((state) => state.viewCourse)
+  } = useSelector((state) => state.viewCourse);
 
   useEffect(() => {
-    ;(() => {
-      if (!courseSectionData.length) return
+    (() => {
+      if (!courseSectionData.length) return;
+
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
-      )
+      );
+
       const currentSubSectionIndx = courseSectionData?.[
         currentSectionIndx
-      ]?.subSection.findIndex((data) => data._id === subSectionId)
+      ]?.subSection.findIndex((data) => data._id === subSectionId);
+
       const activeSubSectionId =
         courseSectionData[currentSectionIndx]?.subSection?.[
           currentSubSectionIndx
-        ]?._id
-      setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)
-      setVideoBarActive(activeSubSectionId)
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [courseSectionData, courseEntireData, location.pathname])
+        ]?._id;
+      setActiveStatus(courseSectionData?.[currentSectionIndx]?._id);
+      setVideoBarActive(activeSubSectionId);
+    })();
+  }, [courseSectionData, courseEntireData, location.pathname]);
 
   return (
     <>
@@ -45,7 +51,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
           <div className="flex w-full items-center justify-between ">
             <div
               onClick={() => {
-                navigate(`/dashboard/enrolled-courses`)
+                navigate(`/dashboard/enrolled-courses`);
               }}
               className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
               title="back"
@@ -66,6 +72,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
           </div>
         </div>
 
+        {/* for sections and subsections */}
         <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
           {courseSectionData.map((course, index) => (
             <div
@@ -79,9 +86,6 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                   {course?.sectionName}
                 </div>
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[12px] font-medium">
-                    Lession {course?.subSection.length}
-                  </span> */}
                   <span
                     className={`${
                       activeStatus === course?.sectionName
@@ -106,10 +110,10 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                       } `}
                       key={i}
                       onClick={() => {
-                        navigate(
+                        navigate( 
                           `/view-course/${courseEntireData?._id}/section/${course?._id}/sub-section/${topic?._id}`
-                        )
-                        setVideoBarActive(topic._id)
+                        );
+                        setVideoBarActive(topic._id);
                       }}
                     >
                       <input
@@ -127,5 +131,5 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
         </div>
       </div>
     </>
-  )
+  );
 }

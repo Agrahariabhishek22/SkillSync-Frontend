@@ -11,36 +11,36 @@ const mongoose = require("mongoose")
 // Method for updating a profile
 exports.updateProfile = async (req, res) => {
   try {
-    // get data
-    // getuserid
-    // validateion
-    // find profile
-    // update profile
-    // return response
-
-    // dateOfBirth=""--mtlb agr user ne dateOfBirth diya to thik nhi to usse empty maan lenge
-    // const {
-    //   // firstName,
-    //   // lastName,
-    //   dateOfBirth,
-    //   about,
-    //   contactNumber,
-    //   gender,
-    // } = req.body
+    const {
+      firstName = "",
+      lastName = "",
+      dateOfBirth = "",
+      about = "",
+      contactNumber = "",
+      gender = "",
+    } = req.body
     const id = req.user.id
 
     // Find the profile by id
     const userDetails = await User.findById(id)
-    const profile = await Profile.findByIdAndUpdate(userDetails.additionalDetails,req.body)
+    const profile = await Profile.findById(userDetails.additionalDetails)
 
-    // const user = await User.findByIdAndUpdate(id, {
-    //   firstName,
-    //   lastName,
-    // })
-    // await user.save()
+    const user = await User.findByIdAndUpdate(id, {
+      firstName,
+      lastName,   
+    })
+    await user.save()
 
+    // Update the profile fields
+    profile.dateOfBirth = dateOfBirth
+    profile.about = about
+    profile.contactNumber = contactNumber
+    profile.gender = gender
 
-     // Find the updated user details
+    // Save the updated profile
+    await profile.save()
+
+    // Find the updated user details
     const updatedUserDetails = await User.findById(id)
       .populate("additionalDetails")
       .exec()
@@ -58,6 +58,7 @@ exports.updateProfile = async (req, res) => {
     })
   }
 }
+
 
 // Delete user account
 exports.deleteAccount = async (req, res) => {
@@ -227,7 +228,7 @@ exports.instructorDashboard = async (req, res) => {
     const courseDetails = await Course.find({ instructor: req.user.id })
 
     const courseData = courseDetails.map((course) => {
-      const totalStudentsEnrolled = course.studentsEnroled.length
+      const totalStudentsEnrolled = course.studentsEnrolled.length
       const totalAmountGenerated = totalStudentsEnrolled * course.price
 
       // Create a new object with the additional fields

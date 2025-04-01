@@ -23,7 +23,7 @@ exports.createSubSection = async (req, res) => {
         .status(404)
         .json({ success: false, message: "All Fields are Required" })
     }
-    console.log(video)
+    // console.log(video)
 
     // Upload the video file to Cloudinary
     const uploadDetails = await uploadImageToCloudinary(
