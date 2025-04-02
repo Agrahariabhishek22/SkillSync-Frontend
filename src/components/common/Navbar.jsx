@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, matchPath } from "react-router-dom";
-import logo from "../../assets/Logo/MargdarshakLogo.jpg";
+import logo from "../../assets/Logo/logo2.jpg";
 import NavbarLinks from "../../data/navbar-links";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
         {/* image added */}
         <Link to="/">
-        <img src={logo} className="h-[35px] max-h-full ml-2" loading="lazy" />
+        <img src={logo} className=" ml-7 rounded-full h-[46px] w-[65px] max-h-full ml-2" loading="lazy" />
         </Link>
         {/* adding navlinks */}
         <nav>
