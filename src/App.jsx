@@ -18,13 +18,14 @@ import Catalog from "./pages/Catalog";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import MyCourses from "./components/core/Dashboard/MyCourses";
-// import Settings from "./components/core/Dashboard/Settings";
+import Settings from "./components/core/Dashboard/Settings";
 import Cart from "./components/core/Dashboard/Cart";
 import AddCourse from "./components/core/Dashboard/AddCourse";
 import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -79,6 +80,7 @@ function App() {
             }
           />
           <Route path="/about" element={<About />} />
+          <Route path="/contactUs" element={<ContactUs />} />
           <Route
             element={
               <PrivateRoute>
@@ -87,7 +89,7 @@ function App() {
             }
           >
             <Route path="dashboard/my-profile" element={<MyProfile />} />
-            {/* <Route path="dashboard/Settings" element={<Settings />} /> */}
+            <Route path="dashboard/Settings" element={<Settings />} />
 
             {user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <>
