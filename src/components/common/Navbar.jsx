@@ -36,22 +36,25 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="h-14 border-b-[1px] border-b-richblack-700 py-[8px] bg-richblack-900">
-      <div className="flex w-11/12 max-w-maxContent items-center justify-between mx-auto">
-        
+    <div className=" flex h-20 border-b-[1px] border-b-richblack-700  bg-blue-800">
+      <div className="flex w-11/12 max-w-maxContent items-center  justify-between mx-auto text-xl">
         {/* Logo */}
         <Link to="/">
-          <img src={logo} className="ml-7 rounded-full h-[46px] w-[65px]" loading="lazy" />
+          <img
+            src={logo}
+            className="ml-7 rounded-full h-[46px] w-[65px]"
+            loading="lazy"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex">
-          <ul className="flex gap-x-6 text-richblack-25">
+        <nav className="hidden md:flex gap-x-6">
+          <ul className="flex gap-x-10 text-richblack-25">
             {NavbarLinks.map((link, idx) => (
               <li key={idx}>
-                {link.title === "Catalog" ? (
-                  <div className="relative group cursor-pointer flex items-center gap-1">
-                    <p>{link.title}</p>
+                {link.title === "Courses" ? (
+                  <div className="relative group cursor-pointer flex items-center gap-x-1">
+                    <p>{`Courses`}</p>
                     <BsChevronDown />
                     <div className="invisible absolute left-1/2 top-[50%] z-50 flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]">
                       <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
@@ -62,7 +65,10 @@ const Navbar = () => {
                           .filter((subLink) => subLink?.courses?.length > 0)
                           .map((subLink, i) => (
                             <Link
-                              to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}
+                              to={`/catalog/${subLink.name
+                                .split(" ")
+                                .join("-")
+                                .toLowerCase()}`}
                               className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-300"
                               key={i}
                             >
@@ -76,7 +82,13 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <Link to={link?.path}>
-                    <p className={`${matchRoute(link?.path) ? "text-yellow-25" : "text-richblack-25"}`}>
+                    <p
+                      className={`${
+                        matchRoute(link?.path)
+                          ? " bg-brown-200 text-black rounded-lg px-2 py-1 "
+                          : "text-richblack-25"
+                      }`}
+                    >
                       {link.title}
                     </p>
                   </Link>
@@ -91,13 +103,17 @@ const Navbar = () => {
           {user && user?.accountType !== "Instructor" && (
             <Link to="/dashboard/cart" className="relative">
               <FaCartShopping className="text-white text-xl" />
-              {totalItems > 0 && <span className="absolute -top-2 -right-2 bg-yellow-50 text-black text-xs px-1.5 py-0.5 rounded-full">{totalItems}</span>}
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-yellow-50 text-black text-xs px-1.5 py-0.5 rounded-full">
+                  {totalItems}
+                </span>
+              )}
             </Link>
           )}
           {token === null ? (
             <>
               <Link to="/login">
-                <button className="border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded">
+                <button className="border border-richblack-700 buttonbg px-4 py-2 text-richblack-100 rounded hover:buttonbghover hover:scale-110 transition ease-in ">
                   Login
                 </button>
               </Link>
@@ -108,12 +124,46 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <ProfileDropDown />
+            <div className="flex flex-row items-center gap-4 text-white">
+              <ProfileDropDown />
+
+              {/* Mobile Courses Dropdown */}
+              <div className="relative group cursor-pointer flex items-center gap-x-1 md:hidden">
+                <p>{`Courses`}</p>
+                <BsChevronDown />
+                <div className="invisible absolute left-1/2 top-[50%] z-50 flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]">
+                  <div className="absolute left-[50%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
+                  {loading ? (
+                    <p className="text-center">Loading...</p>
+                  ) : subLinks.length ? (
+                    subLinks
+                      .filter((subLink) => subLink?.courses?.length > 0)
+                      .map((subLink, i) => (
+                        <Link
+                          to={`/catalog/${subLink.name
+                            .split(" ")
+                            .join("-")
+                            .toLowerCase()}`}
+                          className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-300"
+                          key={i}
+                        >
+                          <p>{subLink.name}</p>
+                        </Link>
+                      ))
+                  ) : (
+                    <p className="text-center">No Courses Found</p>
+                  )}
+                </div>
+              </div>
+            </div>
           )}
         </div>
 
         {/* Hamburger Menu Button */}
-        <button className="md:hidden text-white text-2xl ml-4" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <button
+          className="md:hidden text-white text-2xl ml-4"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
           {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
         </button>
       </div>
@@ -124,29 +174,53 @@ const Navbar = () => {
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden z-50 flex flex-col items-center pt-20 space-y-6 text-white`}
       >
-        <button className="absolute top-6 right-6 text-white text-2xl" onClick={() => setIsMenuOpen(false)}>
+        <button
+          className="absolute top-6 right-6 text-white text-2xl"
+          onClick={() => setIsMenuOpen(false)}
+        >
           <AiOutlineClose />
         </button>
 
         {NavbarLinks.map((link, idx) => (
-          <Link key={idx} to={link?.path} onClick={() => setIsMenuOpen(false)} className="text-xl">
+          <Link
+            key={idx}
+            to={link?.path}
+            onClick={() => setIsMenuOpen(false)}
+            className="text-xl"
+          >
             {link.title}
           </Link>
         ))}
 
         {user && user?.accountType !== "Instructor" && (
-          <Link to="/dashboard/cart" className="relative text-xl" onClick={() => setIsMenuOpen(false)}>
+          <Link
+            to="/dashboard/cart"
+            className="relative text-xl"
+            onClick={() => setIsMenuOpen(false)}
+          >
             <FaCartShopping className="text-white text-2xl" />
-            {totalItems > 0 && <span className="absolute -top-2 -right-2 bg-yellow-50 text-black text-xs px-1.5 py-0.5 rounded-full">{totalItems}</span>}
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-yellow-50 text-black text-xs px-1.5 py-0.5 rounded-full">
+                {totalItems}
+              </span>
+            )}
           </Link>
         )}
 
         {token === null ? (
           <>
-            <Link to="/login" onClick={() => setIsMenuOpen(false)} className="border border-richblack-700 bg-richblack-800 px-6 py-3 rounded">
+            <Link
+              to="/login"
+              onClick={() => setIsMenuOpen(false)}
+              className="border border-richblack-700 bg-richblack-800 px-6 py-3 rounded"
+            >
               Login
             </Link>
-            <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="border border-richblack-700 bg-richblack-800 px-6 py-3 rounded">
+            <Link
+              to="/signup"
+              onClick={() => setIsMenuOpen(false)}
+              className="border border-richblack-700 bg-richblack-800 px-6 py-3 rounded"
+            >
               Signup
             </Link>
           </>

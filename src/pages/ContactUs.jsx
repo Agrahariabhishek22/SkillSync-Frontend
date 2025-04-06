@@ -47,7 +47,7 @@ const ContactUs = () => {
   
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-14 bg-richblack-900 text-white">
+    <div className="min-h-screen flex items-center justify-center px-6 py-14 bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white">
       {loading ? (
         <svg className="animate-spin h-10 w-10 border-4 border-yellow-50 border-t-transparent rounded-full" />
       ) : (

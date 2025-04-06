@@ -3,7 +3,7 @@ import {  useNavigate } from "react-router-dom";
 export default function AboutPage() {
   const navigate=useNavigate();
   return (
-    <div className="min-h-screen bg-richblack-800 text-white flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 text-white flex flex-col items-center p-6">
       <div className="max-w-4xl text-center">
         <h1 className="text-4xl font-bold text-[#ECF5FF] mb-4">About SkillSync</h1>
         <p className="text-lg text-[#A0B7C3] mb-6">

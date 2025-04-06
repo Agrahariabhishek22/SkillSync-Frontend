@@ -66,8 +66,8 @@ export default function RenderSteps() {
               key={item.id}
             >
               <p
-                className={`text-sm ${
-                  step >= item.id ? "text-richblack-5" : "text-richblack-500"
+                className={`text-xl ${
+                  step >= item.id ? "text-richblack-5" : "text-richblack-200"
                 }`}
               >
                 {item.title}
