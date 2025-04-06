@@ -26,15 +26,15 @@ import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import ContactUs from "./pages/ContactUs";
+import LoginForm from "./components/core/Auth/LoginForm";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
 
   return (
     <>
-      <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter ">
+      <div className="w-screen min-h-screen bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 flex flex-col font-inter ">
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="catalog/:catalogName" element={<Catalog />} />
@@ -51,7 +51,7 @@ function App() {
             path="/login"
             element={
               <OpenRoute>
-                <Login />
+                <LoginForm />
               </OpenRoute>
             }
           />
