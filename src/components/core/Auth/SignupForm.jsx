@@ -85,7 +85,7 @@ function SignupForm() {
     <div className="flex min-h-screen items-center justify-center px-4 py-8">
       <div
         className="w-full max-w-md flex flex-col gap-y-6 p-6 sm:p-8 md:p-10 
-  bg-richblack-800 rounded-xl shadow-lg text-xl"
+  bg-richblack-800 rounded-xl shadow-lg text-[18px]"
       >
         {/* Heading */}
         <h1 className="text-3xl font-semibold text-richblack-5 mb-2 text-center">
@@ -101,7 +101,7 @@ function SignupForm() {
         {/* Form */}
         <form
           onSubmit={handleOnSubmit}
-          className="flex w-full flex-col gap-y-4 mt-6 text-lg"
+          className="flex w-full flex-col gap-y-4 mt-6 text-sm"
         >
           <div className="flex flex-col md:flex-row gap-x-4 gap-y-4">
             <label className="w-full">

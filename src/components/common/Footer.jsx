@@ -20,17 +20,17 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="grid grid-cols-2 gap-x-10 gap-y-4 text-[18px] text-white">
           <Link to="/about" className="hover:text-white transition">About</Link>
-          <Link to="/blog" className="hover:text-white transition">Blog</Link>
-          <Link to="/careers" className="hover:text-white transition">Careers</Link>
-          <Link to="/contact" className="hover:text-white transition">Contact</Link>
+          <Link  className="hover:text-white transition">Blog</Link>
+          <Link className="hover:text-white transition">Careers</Link>
+          <Link to="/contactUs" className="hover:text-white transition">Contact</Link>
         </div>
       </div>
 
       {/* Bottom Footer */}
       <div className="mt-6 w-11/12 max-w-maxContent mx-auto flex flex-col lg:flex-row justify-between items-center text--[18px] text-white">
         <div className="flex gap-4">
-          <Link to="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-white transition">Terms</Link>
+          <Link  className="hover:text-white transition">Privacy Policy</Link>
+          <Link className="hover:text-white transition">Terms</Link>
         </div>
         <p className="mt-4 lg:mt-0 text-center">
           Made with ❤️ by Abhishek © 2025 SkillSync

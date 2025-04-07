@@ -85,9 +85,9 @@ const Navbar = () => {
                     <p
                       className={`${
                         matchRoute(link?.path)
-                          ? " bg-brown-200 text-black rounded-lg px-2 py-1 "
+                          ? " bg-brown-50 text-black rounded-lg px-2 py-1 "
                           : "text-richblack-25"
-                      }`}
+                      } font-semibold`}
                     >
                       {link.title}
                     </p>

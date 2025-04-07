@@ -168,15 +168,29 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
-              <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
-                Rs. {price}
-              </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
-              </button>
-              <button className="blackButton">Add to Cart</button>
-            </div>
+            <div className="flex w-full flex-col gap-4 rounded-md border border-richblack-600 bg-richblack-800 px-4 py-6 shadow-sm transition-all duration-200 lg:hidden">
+  {/* Price */}
+  <p className="text-2xl font-bold text-yellow-50 border-b border-richblack-500 pb-3">
+    Rs. {price}
+  </p>
+
+  {/* Buy Now Button */}
+  <button
+    className="w-full rounded-md bg-yellow-50 py-2 text-base font-semibold text-richblack-900 transition-all duration-200 hover:bg-yellow-100"
+    onClick={handleBuyCourse}
+  >
+    Buy Now
+  </button>
+
+  {/* Add to Cart Button */}
+  <button
+    className="w-full rounded-md border border-richblack-700 bg-richblack-900 py-2 text-base font-semibold text-richblack-100 transition-all duration-200 hover:bg-richblack-700"
+    // onClick={handleAddToCart}
+  >
+    Add to Cart
+  </button>
+</div>
+
           </div>
           {/* Courses Card */}
           <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
@@ -214,7 +228,7 @@ function CourseDetails() {
                 <div>
                   <button
                     className="text-yellow-25"
-                    onClick={() => setIsActive([])} 
+                    onClick={() => setIsActive([])}
                   >
                     Collapse all sections
                   </button>

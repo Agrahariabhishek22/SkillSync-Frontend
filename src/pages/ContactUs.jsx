@@ -31,12 +31,13 @@ const ContactUs = () => {
   
       console.log(response);
   
-      if (!response.success) {
+      if (!response.data.success) {
         toast.error(response.message);
       } else {
         toast.success("Your Form Submitted Successfully");
         setFormData({ name: "", email: "", message: "" });
       }
+      
     } catch (error) {
       console.log(error);
       toast.error("An error occurred while submitting the form.");
@@ -108,7 +109,7 @@ const ContactUs = () => {
               ></textarea>
               <button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-lg font-bold text-lg hover:opacity-90 transition-all"
+                className="w-full py-4 bg-yellow-50 text-black rounded-lg font-bold text-lg hover:opacity-90 transition-all"
               >
                 Send Message
               </button>
