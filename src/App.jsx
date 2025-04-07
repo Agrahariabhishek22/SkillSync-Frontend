@@ -2,8 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/common/Navbar";
 import OpenRoute from "./components/core/Auth/OpenRoute";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
@@ -27,6 +25,7 @@ import VideoDetails from "./components/core/ViewCourse/VideoDetails";
 import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 import ContactUs from "./pages/ContactUs";
 import LoginForm from "./components/core/Auth/LoginForm";
+import SignupForm from "./components/core/Auth/SignupForm";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -43,7 +42,7 @@ function App() {
             path="/signup"
             element={
               <OpenRoute>
-                <Signup />
+                <SignupForm />
               </OpenRoute>
             }
           />

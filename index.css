@@ -139,3 +139,7 @@ html, body {
 .section_heading {
   @apply text-2xl font-bold text-richblack-5 lg:text-4xl;
 }
+
+.bg-universal{
+  @apply bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700
+}

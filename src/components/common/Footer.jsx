@@ -10,7 +10,7 @@ const Footer = () => {
         {/* Logo & Socials */}
         <div className="flex flex-col justify-center items-center gap-4 ">
           <img src={Logo} alt="SkillSync Logo" className="w-36 rounded-full" />
-          <div className="flex gap-4 text-3xl text-richblack-300">
+          <div className="flex gap-4 text-2xl text-richblack-300">
             <FaFacebook className="hover:text-white transition" />
             <FaTwitter className="hover:text-white transition" />
             <FaYoutube className="hover:text-white transition" />
@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-2 gap-x-10 gap-y-4 text-2xl">
+        <div className="grid grid-cols-2 gap-x-10 gap-y-4 text-[18px] text-white">
           <Link to="/about" className="hover:text-white transition">About</Link>
           <Link to="/blog" className="hover:text-white transition">Blog</Link>
           <Link to="/careers" className="hover:text-white transition">Careers</Link>
@@ -27,7 +27,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Footer */}
-      <div className="mt-6 w-11/12 max-w-maxContent mx-auto flex flex-col lg:flex-row justify-between items-center text-xl text-richblack-500">
+      <div className="mt-6 w-11/12 max-w-maxContent mx-auto flex flex-col lg:flex-row justify-between items-center text--[18px] text-white">
         <div className="flex gap-4">
           <Link to="/privacy-policy" className="hover:text-white transition">Privacy Policy</Link>
           <Link to="/terms" className="hover:text-white transition">Terms</Link>

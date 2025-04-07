@@ -7,8 +7,7 @@ const tabName = [
   "Free",
   "New to coding",
   "Most popular",
-  "Skills paths",
-  "Career paths",
+  // "Career paths",
 ];
 const ExploreMore = () => {
   const [currentTab, setCurrentTab] = useState("Free");
@@ -26,14 +25,14 @@ const ExploreMore = () => {
 
   return (
     <div>
-      <div className="text-4xl text-center font-semibold items-center">
-        Master the Language of the Future
+      <div className="md:text-4xl text-2xl text-center font-semibold items-center">
+        Master the Language of Future
       </div>
       <p className="text-center text-richblack-50 text-[16px] mt-3">
         Learn to build anyhting that you can imagine
       </p>
 
-      <div className="flex rounded-full bg-richblack-800 mb-5 mt-5  px-1 py-1">
+      <div className="flex justify-between rounded-full bg-richblack-800 mb-5 mt-5  px-1 py-1">
         {tabName.map((element, idx) => {
           return (
             <div
@@ -59,7 +58,7 @@ const ExploreMore = () => {
 
       <div className="w-full px-3 lg:px-0 mb-7 lg:mb-0">
         <div
-          className="grid justify-between grid-cols-3 md:grid-cols-2
+          className="grid justify-between grid-cols-1 md:grid-cols-2
    lg:grid-cols-3 gap-6 place-items-center"
         >
           {courses.map((element, idx) => (

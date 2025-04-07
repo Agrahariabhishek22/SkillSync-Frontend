@@ -42,7 +42,7 @@ const Navbar = () => {
         <Link to="/">
           <img
             src={logo}
-            className="ml-7 rounded-full h-[46px] w-[65px]"
+            className="rounded-full h-[46px] w-[55px]"
             loading="lazy"
           />
         </Link>
@@ -113,12 +113,12 @@ const Navbar = () => {
           {token === null ? (
             <>
               <Link to="/login">
-                <button className="border border-richblack-700 buttonbg px-4 py-2 text-richblack-100 rounded hover:buttonbghover hover:scale-110 transition ease-in ">
+                <button className="border border-richblack-700 buttonbg px-3 py-2 text-richblack-100 rounded hover:scale-90 transition ease-in ">
                   Login
                 </button>
               </Link>
               <Link to="/signup">
-                <button className="border border-richblack-700 bg-richblack-800 px-4 py-2 text-richblack-100 rounded">
+                <button className="border border-richblack-700 bg-richblack-800 px-3 py-2 text-richblack-100 rounded hover:scale-90 transition ease-in">
                   Signup
                 </button>
               </Link>
