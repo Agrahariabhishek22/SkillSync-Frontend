@@ -44,19 +44,27 @@ const Home = () => {
         <ExploreMore />
       </div>
       {/* Section 2 */}
-      <div className="bg-pure-greys-5 text-richblack-700 ">
-        <div className="homepage_bg h-[330px]">
-          <div className="w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 max-auto">
-            <div className="h-[120px]"></div>
-            <div className="flex flex-row gap-7 text-white">
+      <div className="bg-pure-greys-5 text-richblack-700">
+        {/* Hero Section */}
+        <div className="homepage_bg min-h-[330px] flex items-center">
+          <div className="w-11/12 max-w-maxContent mx-auto flex flex-col items-center justify-center gap-6">
+            <h1 className="text-3xl font-bold text-grey text-center">
+              Unlock Your Potential with SkillSync
+            </h1>
+            <p className="text-richblack-200 max-w-xl text-center">
+              Choose your interest type and start your journey with us — whether
+              you're a student eager to learn or an instructor ready to teach,
+              we’ve got you covered.
+            </p>
+            <div className="flex flex-row gap-6 text-white mt-4">
               <CTAButton active={true} linkto={"/signup"}>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   Explore Full Catalog
                   <FaLongArrowAltRight />
                 </div>
               </CTAButton>
               <CTAButton active={false} linkto={"/signup"}>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   Learn More
                   <FaLongArrowAltRight />
                 </div>
@@ -65,19 +73,18 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 ">
-          {/* Job that is in Demand - Section 1 */}
-
-          <div className="mb-10 mt-[-100px] flex flex-col justify-between gap-7 lg:mt-20 lg:flex-row lg:gap-0 ">
-            <div className="text-4xl font-semibold lg:w-[45%] ">
+        {/* Skills Section */}
+        <div className="mx-auto flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 py-16">
+          <div className="flex flex-col justify-between gap-10 lg:flex-row lg:gap-0">
+            <div className="text-4xl font-semibold lg:w-[45%]">
               Get the skills you need for a{" "}
               <HighlightText text={"job that is in demand."} />
             </div>
 
-            <div className="flex flex-col  items-start gap-10 lg:w-[40%]">
-              <div className="text-[16px]">
-                The modern SkillSync is the dictates its own terms. Today, to
-                be a competitive specialist requires more than professional
+            <div className="flex flex-col items-start gap-8 lg:w-[40%]">
+              <div className="text-base text-richblack-600">
+                The modern SkillSync dictates its own terms. Today, to be a
+                competitive specialist requires more than just professional
                 skills.
               </div>
               <CTAButton active={true} linkto={"/signup"}>
