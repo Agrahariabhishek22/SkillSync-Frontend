@@ -64,7 +64,7 @@ return (
                 ? () => navigate("/dashboard/enrolled-courses")
                 : handleBuyCourse
             }
-          >
+          > 
             {user && course?.studentsEnrolled.includes(user?._id)
               ? "Go To Course"
               : "Buy Now"}

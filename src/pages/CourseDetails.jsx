@@ -198,7 +198,9 @@ function CourseDetails() {
                 className="w-full rounded-md bg-yellow-50 py-2 text-base font-semibold text-richblack-900 transition-all duration-200 hover:bg-yellow-100"
                 onClick={handleBuyCourse}
               >
-                Buy Now
+              {user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
+              ? "Go To Course"
+              : "Buy Now"}
               </button>
 
               {/* Add to Cart Button */}
