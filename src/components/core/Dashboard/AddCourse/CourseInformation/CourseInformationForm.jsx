@@ -4,7 +4,6 @@ import { toast } from "react-hot-toast"
 import { HiOutlineCurrencyRupee } from "react-icons/hi"
 import { MdNavigateNext } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
-
 import {
   addCourseDetails,
   editCourseDetails,
@@ -44,13 +43,11 @@ export default function CourseInformationForm() {
         } else {
           console.log("Response is empty or not an array");
         }
-        console.log(response[0].name);
+        // console.log(response[0].name);
         if (response.length === 0) {
           console.log("No data available");
         }
         console.log(response);
-        
-        
          if (response?.length > 0) {
           setCourseCategories(response)
         }
@@ -73,7 +70,6 @@ export default function CourseInformationForm() {
     }
     getCategories()
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const isFormUpdated = () => {
@@ -98,7 +94,6 @@ export default function CourseInformationForm() {
   //   handle next button click
   const onSubmit = async (data) => {
     // console.log(data)
-
     if (editCourse) {
       // const currentValues = getValues()
       // console.log("changes after editing form values:", currentValues)
@@ -118,6 +113,7 @@ export default function CourseInformationForm() {
         if (currentValues.coursePrice !== course.price) {
           formData.append("price", data.coursePrice)
         }
+        // It converts the value of data.courseTags (usually an array or object) into a JSON string.
         if (currentValues.courseTags.toString() !== course.tag.toString()) {
           formData.append("tag", JSON.stringify(data.courseTags))
         }
@@ -189,7 +185,7 @@ export default function CourseInformationForm() {
           className="form-style w-full"
         />
         {errors.courseTitle && (
-          <span className="ml-2 text-xs tracking-wide text-pink-200">
+          <span className="ml-2 text-xs tracking-wide text-pink-300">
             Course title is required
           </span>
         )}

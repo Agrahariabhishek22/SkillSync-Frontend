@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-hot-toast"
 
+
+// total ->gives total amount of cart
+// totalItems is total items in the cart
+ 
 const initialState = {
   cart: localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
