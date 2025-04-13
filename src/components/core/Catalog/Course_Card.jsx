@@ -15,7 +15,7 @@ const Course_Card = ({course, Height}) => {
   return (
     <>
       <Link to={`/courses/${course._id}`}>
-      <div className="w-full sm:w-[400px] border border-richblack-700 bg-richblack-800 p-4 rounded-lg text-richblack-5">
+      <div className="w-[290px] sm:w-[400px] border border-richblack-700 bg-richblack-800 p-4 rounded-lg text-richblack-5 ">
 
           <div className="rounded-lg">
             <img
