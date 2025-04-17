@@ -91,6 +91,7 @@ paymentObject.open(); // opens Razorpay payment popup
   } catch (error) {
     console.log("PAYMENT API ERROR.....", error);
     toast.error("Could not make Payment");
+    toast.error(error.response.data.message)
   }
   toast.dismiss(toastId);
 }

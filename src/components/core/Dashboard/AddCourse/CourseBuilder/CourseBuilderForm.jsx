@@ -40,9 +40,9 @@ export default function CourseBuilderForm() {
     let result
     if (editSectionName) {
       // console.log(editSectionName);
+      // ye section ko update krke updated and populated course bhejega 
       result = await updateSection(
         {
-          
           sectionName: data.sectionName,
           sectionId: editSectionName,
           courseId: course._id,
@@ -51,6 +51,7 @@ export default function CourseBuilderForm() {
       )
       // console.log("edit", result)
     } else {
+      // ye section create krke uske id ko course ke course content me push krke pura updated and populated course return krega
       result = await createSection(
         {
           sectionName: data.sectionName,
@@ -59,7 +60,6 @@ export default function CourseBuilderForm() {
         token
       )
     }
-
     // update
     if (result) {
       // console.log("section result", result)
@@ -99,6 +99,8 @@ export default function CourseBuilderForm() {
   }
 
   const goBack = () => {
+    // console.log(course);
+    
     dispatch(setStep(1))
     dispatch(setEditCourse(true))
   }
@@ -126,7 +128,7 @@ export default function CourseBuilderForm() {
         </div>
         <div className="flex items-end gap-x-4">
           <IconBtn
-            type="submit"
+            // type="submit"
             disabled={loading}
             text={editSectionName ? "Edit Section Name" : "Create Section"}
             outline={true}
@@ -156,7 +158,7 @@ export default function CourseBuilderForm() {
           Back
         </button>
         <IconBtn disabled={loading} text="Next" onclick={goToNext}>
-          <MdNavigateNext />
+          <MdNavigateNext /> 
         </IconBtn>
       </div>
     </div>

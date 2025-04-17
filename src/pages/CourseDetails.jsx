@@ -15,6 +15,7 @@ import { addToCart } from "../slices/cartSlice";
 import { buyCourse } from "../services/operations/studentFeaturesAPI";
 import GetAvgRating from "../utils/avgRating";
 import Error from "./Error";
+import toast from "react-hot-toast";
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile);
@@ -187,7 +188,8 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col gap-4 rounded-md border border-richblack-600 bg-richblack-800 px-4 py-6 shadow-sm transition-all duration-200 lg:hidden">
+            {user.accountType==="Student"&&
+              <div className="flex w-full flex-col gap-4 rounded-md border border-richblack-600 bg-richblack-800 px-4 py-6 shadow-sm transition-all duration-200 lg:hidden">
               {/* Price */}
               <p className="text-2xl font-bold text-yellow-50 border-b border-richblack-500 pb-3">
                 Rs. {price}
@@ -210,16 +212,17 @@ function CourseDetails() {
               >
                 Add to Cart
               </button>
-            </div>
+            </div>}
           </div>
           {/* Courses Card */}
+          {user.accountType==="Student"&&
           <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
-            <CourseDetailsCard
-              course={response?.data?.courseDetails}
-              setConfirmationModal={setConfirmationModal}
-              handleBuyCourse={handleBuyCourse}
-            />
-          </div>
+          <CourseDetailsCard
+            course={response?.data?.courseDetails}
+            setConfirmationModal={setConfirmationModal}
+            handleBuyCourse={handleBuyCourse}
+          />
+        </div>}
         </div>
       </div>
       <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">

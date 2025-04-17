@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 import { apiConnector } from "../services/apiconnector"
+import contactImage from "../assets/Logo/logo2.jpg"
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });

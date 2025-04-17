@@ -51,20 +51,24 @@ export default function Instructor() {
         <div className="spinner"></div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
+          <div className="my-4 flex flex-col sm:flex-row sm:h-[300px] gap-4 space-y-4 sm:space-y-0">
             {/* Render chart / graph */}
             {totalAmount > 0 || totalStudents > 0 ? (
+              <div className="w-full sm:flex-1 rounded-md bg-richblack-800 p-4 sm:p-6 min-h-[300px]">
               <InstructorChart courses={instructorData} />
+            </div>
+            
             ) : (
-              <div className="flex-1 rounded-md bg-richblack-800 p-6">
+              <div className="flex-1 rounded-md bg-richblack-800 p-4 sm:p-6">
                 <p className="text-lg font-bold text-richblack-5">Visualize</p>
                 <p className="mt-4 text-xl font-medium text-richblack-50">
                   Not Enough Data To Visualize
                 </p>
               </div>
             )}
+
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
+            <div className="min-w-full sm:min-w-[250px] rounded-md bg-richblack-800 p-4 sm:p-6">
               <p className="text-lg font-bold text-richblack-5">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
@@ -97,12 +101,12 @@ export default function Instructor() {
               </Link>
             </div>
             <div className="my-4 flex items-start space-x-6">
-              {courses.slice(0, 3).map((course) => (
-                <div key={course._id} className="w-1/3">
+              {courses.slice(0,2).map((course) => (
+                <div key={course._id} className="w-1/2">
                   <img
                     src={course.thumbnail}
                     alt={course.courseName}
-                    className="h-[201px] w-full rounded-md object-cover"
+                    className="h-[180px] w-full rounded-md object-cover"
                   />
                   <div className="mt-3 w-full">
                     <p className="text-sm font-medium text-richblack-50">
