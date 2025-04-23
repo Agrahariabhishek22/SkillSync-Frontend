@@ -23,12 +23,14 @@ const Catalog = () => {
     const getCategories = async () => {
       // console.log(categories.CATEGORIES_API);
       const res = await apiConnector("GET", categories.CATEGORIES_API);
+      console.log(res);
+      
       const category_id = res?.data?.data?.filter(
         (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
       )[0]._id;
       setCategoryId(category_id);
     };
-    console.log("got", categoryId);
+    // console.log("got", categoryId);
 
     getCategories();
   }, [catalogName]);
@@ -38,6 +40,7 @@ const Catalog = () => {
     const getCategoryDetails = async () => {
       try {
         const res = await getCatalogaPageData(categoryId);
+        
         console.log("Printing res: ", res);
         setCatalogPageData(res);
       } catch (error) {

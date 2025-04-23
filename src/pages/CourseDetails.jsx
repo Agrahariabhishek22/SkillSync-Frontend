@@ -38,7 +38,7 @@ function CourseDetails() {
     (async () => {
       try {
         const res = await fetchCourseDetails(courseId);
-        console.log("course details res: ", res)
+        console.log("course details res: ", res);
         setResponse(res);
       } catch (error) {
         console.log("Could not fetch Course Details");
@@ -115,24 +115,27 @@ function CourseDetails() {
       btn2Handler: () => setConfirmationModal(null),
     });
   };
+  const handleCourse = () => {
+    navigate("/dashboard/enrolled-courses");
+  };
   const handleAddToCart = () => {
-      if (user && user?.accountType === "Instructor") {
-        toast.error("You are an Instructor. You can't buy a course.");
-        return;
-      }
-      if (token) {
-        dispatch(addToCart(response?.data?.courseDetails));
-        return;
-      }
-      setConfirmationModal({
-        text1: "You are not logged in!",
-        text2: "Please login to add To Cart",
-        btn1Text: "Login",
-        btn2Text: "Cancel",
-        btn1Handler: () => navigate("/login"),
-        btn2Handler: () => setConfirmationModal(null),
-      });
-    };
+    if (user && user?.accountType === "Instructor") {
+      toast.error("You are an Instructor. You can't buy a course.");
+      return;
+    }
+    if (token) {
+      dispatch(addToCart(response?.data?.courseDetails));
+      return;
+    }
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to add To Cart",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    });
+  };
 
   if (paymentLoading) {
     // console.log("payment loading")
@@ -188,41 +191,59 @@ function CourseDetails() {
                 </p>
               </div>
             </div>
-            {user.accountType==="Student"&&
+            {user.accountType === "Student" && (
               <div className="flex w-full flex-col gap-4 rounded-md border border-richblack-600 bg-richblack-800 px-4 py-6 shadow-sm transition-all duration-200 lg:hidden">
-              {/* Price */}
-              <p className="text-2xl font-bold text-yellow-50 border-b border-richblack-500 pb-3">
-                Rs. {price}
-              </p>
+                {/* Price */}
+                <p className="text-2xl font-bold text-yellow-50 border-b border-richblack-500 pb-3">
+                  Rs. {price}
+                </p>
 
-              {/* Buy Now Button */}
-              <button
-                className="w-full rounded-md bg-yellow-50 py-2 text-base font-semibold text-richblack-900 transition-all duration-200 hover:bg-yellow-100"
-                onClick={handleBuyCourse}
-              >
-              {user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
-              ? "Go To Course"
-              : "Buy Now"}
-              </button>
+                {/* Buy Now Button */}
+                <button
+                  className="w-full rounded-md bg-yellow-50 py-2 text-base font-semibold text-richblack-900 transition-all duration-200 hover:bg-yellow-100"
+                  onClick={
+                    user &&
+                    studentsEnrolled.includes(
+                      user?._id
+                    )
+                      ? handleCourse
+                      : handleBuyCourse
+                  }
+                >
+                  {user &&
+                  response?.data?.courseDetails?.studentsEnrolled.includes(
+                    user?._id
+                  )
+                    ? "Go To Course"
+                    : "Buy Now"}
+                </button>
 
-              {/* Add to Cart Button */}
-              <button
-                className="w-full rounded-md border border-richblack-700 bg-richblack-900 py-2 text-base font-semibold text-richblack-100 transition-all duration-200 hover:bg-richblack-700"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </button>
-            </div>}
+                {/* Add to Cart Button */}
+                {
+                  user&&studentsEnrolled.includes(
+                    user?._id
+                  )&&
+                  <button
+                  className="w-full rounded-md border border-richblack-700 bg-richblack-900 py-2 text-base font-semibold text-richblack-100 transition-all duration-200 hover:bg-richblack-700"
+                  onClick={handleAddToCart}
+                >
+                  Add to Cart
+                </button>
+                }
+                
+              </div>
+            )}
           </div>
           {/* Courses Card */}
-          {user.accountType==="Student"&&
-          <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
-          <CourseDetailsCard
-            course={response?.data?.courseDetails}
-            setConfirmationModal={setConfirmationModal}
-            handleBuyCourse={handleBuyCourse}
-          />
-        </div>}
+          {user.accountType === "Student" && (
+            <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
+              <CourseDetailsCard
+                course={response?.data?.courseDetails}
+                setConfirmationModal={setConfirmationModal}
+                handleBuyCourse={handleBuyCourse}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="mx-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]">
@@ -240,12 +261,8 @@ function CourseDetails() {
               <p className="text-[28px] font-semibold">Course Content</p>
               <div className="flex flex-wrap justify-between gap-2">
                 <div className="flex gap-2">
-                  <span>
-                    {courseContent.length} section(s)
-                  </span>
-                  <span>
-                    {totalNoOfLectures} lecture(s)
-                  </span>
+                  <span>{courseContent.length} section(s)</span>
+                  <span>{totalNoOfLectures} lecture(s)</span>
                   <span>{response.data?.totalDuration} total length</span>
                 </div>
                 <div>

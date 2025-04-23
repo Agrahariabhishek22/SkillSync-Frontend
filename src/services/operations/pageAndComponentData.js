@@ -9,19 +9,20 @@ export const getCatalogaPageData = async(categoryId) => {
   try{
         const response = await apiConnector("POST", catalogData.CATALOGPAGEDATA_API, 
         {categoryId: categoryId,});
-
-        if(!response?.data?.success)
+          // console.log(response);
+          
+        if(!response?.data?.success){
+          console.log("error in catalogu");
             throw new Error("Could not Fetch Category page data");
-
+        }
          result = response?.data;
-
   }
-  catch(error) {
+  catch(error) { 
     console.log("CATALOG PAGE DATA API ERROR....", error);
     toast.error(error.message);
-    result = error.response?.data;
-  }
-  toast.dismiss(toastId);
+    result = error.response?.data; 
+  } 
+  toast.dismiss(toastId); 
   return result;
 }
 

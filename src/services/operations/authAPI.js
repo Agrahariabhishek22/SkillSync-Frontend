@@ -16,7 +16,6 @@ export function login(email, password, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
-
     try {
       // Make the API call to the login endpoint
       const response = await apiConnector("POST", LOGIN_API, {

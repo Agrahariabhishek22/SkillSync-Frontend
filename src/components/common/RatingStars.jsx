@@ -22,6 +22,7 @@ function RatingStars({ Review_Count, Star_Size }) {
   }, [Review_Count])
   return (
     <div className="flex gap-1 text-yellow-100">
+      {/* it is creating new array of size starCount.full initialised with undefined */}
       {[...new Array(starCount.full)].map((_, i) => {
         return <TiStarFullOutline key={i} size={Star_Size || 20} />
       })}

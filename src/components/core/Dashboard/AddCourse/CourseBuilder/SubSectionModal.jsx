@@ -106,6 +106,8 @@ export default function SubSectionModal({
     }
 
     const formData = new FormData()
+    console.log(data.lectureVideo);
+    
     formData.append("sectionId", modalData)
     formData.append("title", data.lectureTitle)
     formData.append("description", data.lectureDesc)

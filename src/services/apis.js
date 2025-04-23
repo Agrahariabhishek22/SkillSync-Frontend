@@ -58,10 +58,6 @@ export const endpoints = {
   export const catalogData = {
     CATALOGPAGEDATA_API: BASE_URL + "/course/getCategoryPageDetails",
   }
-  // CONTACT-US API
-  export const contactusEndpoint = {
-    CONTACT_US_API: BASE_URL + "/reach/contact",
-  }
   
   // SETTINGS PAGE API
   export const settingsEndpoints = {

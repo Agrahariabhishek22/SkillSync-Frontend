@@ -8,7 +8,8 @@ export const apiConnector = (method, url, bodyData, headers, params) => {
         url,
         data: bodyData,
         headers,
-        params
+        params,
+        // withCredentials: true,
     });
 };
 
