@@ -159,6 +159,12 @@ export default function CourseInformationForm() {
     formData.append("instructions", JSON.stringify(data.courseRequirements));
     formData.append("thumbnailImage", data.courseImage);
     setLoading(true);
+    // formData.forEach((val,key)=>{
+    //   console.log(key,val);
+      
+    // })
+    // console.log(formData.courseImage);
+    
     const result = await addCourseDetails(formData, token);
     if (result) {
       dispatch(setStep(2));
@@ -270,7 +276,7 @@ export default function CourseInformationForm() {
         getValues={getValues}
       />
       {/* Course Thumbnail Image */}
-      <Upload
+      <Upload 
         name="courseImage"
         label="Course Thumbnail"
         register={register}

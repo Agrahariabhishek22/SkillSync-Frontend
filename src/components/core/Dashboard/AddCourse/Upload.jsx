@@ -24,6 +24,12 @@ export default function Upload({
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
+    console.log(acceptedFiles);
+    
+    // console.log(file);
+    
+    // console.log();
+    
     if (file) {
       previewFile(file);
       setSelectedFile(file);
@@ -43,6 +49,13 @@ export default function Upload({
     onDrop,
     noClick: true, // disables Dropzone's default click handling
   });
+  // console.log(getInputProps());
+  // console.log(getRootProps());
+  // console.log(isDragActive);
+  
+  
+  // console.log(inputRef);
+  
 
   useEffect(() => {
     register(name, { required: true });
@@ -55,10 +68,15 @@ export default function Upload({
   }, [name, selectedFile, setValue]);
 
   const handleClick = () => {
+    console.log("handle click ");
+    
     if (!viewData && inputRef.current) {
+      console.log("handle click handle ");
       inputRef.current.click();
     }
   };
+// console.log(viewData);
+// console.log(editData);
 
   return (
     <div className="flex flex-col space-y-2">

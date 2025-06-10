@@ -34,7 +34,7 @@ function CourseDetails() {
   const [confirmationModal, setConfirmationModal] = useState(null);
 
   useEffect(() => {
-    // Calling fetchCourseDetails fucntion to fetch the details
+    // Calling fetchCourseDetails function to fetch the details
     (async () => {
       try {
         const res = await fetchCourseDetails(courseId);
@@ -220,7 +220,7 @@ function CourseDetails() {
 
                 {/* Add to Cart Button */}
                 {
-                  user&&studentsEnrolled.includes(
+                  user&&!studentsEnrolled.includes(
                     user?._id
                   )&&
                   <button

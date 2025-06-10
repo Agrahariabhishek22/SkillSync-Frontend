@@ -55,6 +55,8 @@ export async function buyCourse(
         Authorization: `Bearer ${token}`,
       }
     );
+    console.log(orderResponse);
+    
 
     if (!orderResponse.data.success) {
       throw new Error(orderResponse.data.message);
@@ -83,7 +85,7 @@ export async function buyCourse(
       };
     //    2. Launch Razorpay checkout
     const paymentObject = new window.Razorpay(options);
-paymentObject.open(); // opens Razorpay payment popup
+    paymentObject.open(); // opens Razorpay payment popup
     paymentObject.on("payment.failed", function (response) {
       toast.error("oops, payment failed");
       console.log(response.error);
@@ -120,6 +122,8 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
   const toastId = toast.loading("Verifying Payment....");
   dispatch(setPaymentLoading(true));
   try {
+    console.log("in verify payment",bodyData);
+    
     const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
       Authorization: `Bearer ${token}`,
     });
